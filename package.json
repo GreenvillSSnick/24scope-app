@@ -5,7 +5,8 @@
   "type": "commonjs",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder --mac --win --linux"
+    "dist": "npx electron-builder --mac --win --linux",
+    "dist:win": "npx electron-builder --win"
   },
   "dependencies": {
     "@electron/remote": "^2.1.3",
