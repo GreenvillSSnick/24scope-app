@@ -1,11 +1,11 @@
 {
-  "name": "24scope-electron",
+  "name": "24Scope",
   "version": "1.0.0",
   "main": "main.js",
   "type": "commonjs",
   "scripts": {
     "start": "electron .",
-    "dist": "electron-builder"
+    "dist": "electron-builder --mac --win --linux"
   },
   "dependencies": {
     "@electron/remote": "^2.1.3",
@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@electron/rebuild": "^4.0.1",
+    "app-builder-bin": "^5.0.0-alpha.12",
     "electron": "^26.6.10",
     "electron-builder": "^26.0.12",
     "electron-rebuild": "^3.2.9"
@@ -25,15 +26,41 @@
     },
     "mac": {
       "icon": "build/icons",
-      "target": ["dmg", "zip"]
+      "target": [
+        "dmg"
+      ],
+      "sign": false,
+      "hardenedRuntime": false
     },
     "win": {
       "icon": "build/icons",
-      "target": ["nsis", "zip"]
+      "target": [
+        "nsis"
+      ]
     },
     "linux": {
       "icon": "build/icons",
-      "target": ["AppImage", "deb"]
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    },
+    "dmg": {
+      "icon": "build/icons/icon.icns",
+      "iconSize": 128,
+      "contents": [
+        {
+          "x": 130,
+          "y": 220,
+          "type": "file"
+        },
+        {
+          "x": 410,
+          "y": 220,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
     },
     "files": [
       "**/*"

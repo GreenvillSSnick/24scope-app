@@ -180,7 +180,7 @@ async function createWindow() {
   mainWindow = new BrowserWindow({
     width: 1200,
     height: 800,
-    icon: path.join(process.cwd(), 'assets', 'icon.jpg'),
+    icon: path.join(process.cwd(), 'build', '256x256.png'),
     frame: false,
     webPreferences: {
       preload: path.join(process.cwd(), 'preload.js'),
@@ -205,6 +205,7 @@ async function createWindow() {
 //   topBar.webContents.openDevTools();
 
   const contentView = new BrowserView({
+    icon: path.join(process.cwd(), 'build', '256x256.png'),
     webPreferences: {
       preload: path.join(process.cwd(), 'preload.js'),
       contextIsolation: true,
