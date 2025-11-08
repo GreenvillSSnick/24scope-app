@@ -3,9 +3,12 @@ import path from 'path';
 import { createRequire } from 'node:module';
 import axios from 'axios';
 import EventEmitter from 'events';
+import { setupTitlebar, attachTitlebarToWindow } from "custom-electron-titlebar/main";
 const require = createRequire(import.meta.url);
 
 let mainWindow;
+
+setupTitlebar();
 
 async function createWindow() {
   mainWindow = new BrowserWindow({
@@ -13,6 +16,7 @@ async function createWindow() {
     height: 800,
     icon: path.join(process.cwd(), 'build', '256x256.png'),
     frame: false,
+    titleBarStyle: 'hidden',
     webPreferences: {
       preload: path.join(process.cwd(), 'preload.js'),
       contextIsolation: true,
@@ -21,17 +25,6 @@ async function createWindow() {
     }
   });
 
-  const topBar = new BrowserView({
-    webPreferences: {
-      preload: path.join(process.cwd(), 'preload.js'),
-      contextIsolation: true,
-      nodeIntegration: false
-    }
-  });
-  mainWindow.setBrowserView(topBar);
-  topBar.setBounds({ x: 0, y: 0, width: 1200, height: 32 });
-  topBar.setAutoResize({ width: true });
-  topBar.webContents.loadFile(path.join(process.cwd(), 'topbar.html'));
   const contentView = new BrowserView({
     icon: path.join(process.cwd(), 'build', '256x256.png'),
     webPreferences: {
@@ -46,6 +39,8 @@ async function createWindow() {
   await contentView.webContents.loadURL('https://zedruc.net/24scope/');
 
   mainWindow.on('closed', () => (mainWindow = null));
+
+  attachTitlebarToWindow(mainWindow);
 }
 
 app.whenReady().then(async () => {
