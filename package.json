@@ -2,14 +2,15 @@
   "name": "24scope-electron",
   "version": "1.0.0",
   "main": "main.js",
-  "type": "module",
+  "type": "commonjs",
   "scripts": {
     "start": "electron ."
   },
   "dependencies": {
     "@electron/remote": "^2.1.3",
     "axios": "^1.12.2",
-    "node-nowplaying": "^0.1.0"
+    "node-nowplaying": "^0.1.0",
+    "node-nowplaying-darwin-universal": "^0.1.0"
   },
   "devDependencies": {
     "@electron/rebuild": "^4.0.1",
