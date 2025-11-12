@@ -28,6 +28,7 @@ async function createWindow() {
     }
   });
   mainWindow.addBrowserView(contentView);
+  contentView.setBounds({ x: 0, y: 0, width: 1200, height: 768 });
   contentView.setAutoResize({ width: true, height: true });
   await contentView.webContents.loadURL('https://zedruc.net/24scope/');
 
