@@ -35,6 +35,5 @@ async function createWindow() {
 }
 
 app.whenReady().then(async () => {
-  await handler.setup();
   await createWindow();
 });
